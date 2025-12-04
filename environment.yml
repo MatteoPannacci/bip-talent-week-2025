@@ -1,0 +1,21 @@
+name: pytorch_env
+channels:
+  - defaults
+  - conda-forge
+  - pytorch
+  - nvidia
+dependencies:
+  - python=3.12
+  - numpy
+  - pandas
+  - openpyxl
+  - pytorch
+  - torchaudio
+  - torchvision
+  - pytorch-cuda=12.2
+  - transformers
+  - datasets
+  - evaluate
+  - scikit-learn
+  - tqdm
+  - tensorboard
