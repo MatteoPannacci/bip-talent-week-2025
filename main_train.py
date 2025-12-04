@@ -87,17 +87,17 @@ token_dataset = dataset.map(
 training_args = TrainingArguments(
 
     # hyperparameters
-    num_train_epochs = 2,
+    num_train_epochs = 10,
     per_device_train_batch_size = 16,
     per_device_eval_batch_size = 16,
-    warmup_steps = 50,
+    warmup_steps = 200,
     weight_decay = 1e-3,
     learning_rate = 1e-4,
     gradient_accumulation_steps = 20,
 
     # model saving
     save_strategy = "steps",
-    save_steps = 50,
+    save_steps = 200,
     output_dir = MODEL_DIR,
     overwrite_output_dir = True,
     save_total_limit = 5,
@@ -107,13 +107,13 @@ training_args = TrainingArguments(
     # logging
     report_to = ["tensorboard"],
     logging_strategy = "steps",
-    logging_steps = 50,
+    logging_steps = 200,
     logging_first_step = True,
     logging_dir = LOG_DIR,
 
     # evaluation
     eval_strategy = "steps",
-    eval_steps = 50,
+    eval_steps = 200,
 
     # other
     dataloader_num_workers = 1,
