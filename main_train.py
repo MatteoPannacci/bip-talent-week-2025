@@ -19,6 +19,10 @@ from transformers import (
 
 
 
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+
+
 # Constants
 
 MAIN_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -59,7 +63,7 @@ data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 # Load dataset
 
 excel = pd.read_excel(DATASET_PATH)
-dataframe = pd.DataFrame(dataframe)
+dataframe = pd.DataFrame(excel)
 
 dataset = Dataset.from_pandas(dataframe)
 dataset = dataset.train_test_split(test_size=0.2, seed=seed)  # (task 1: split)
@@ -90,14 +94,14 @@ training_args = TrainingArguments(
     num_train_epochs = 1,
     per_device_train_batch_size = 8,
     per_device_eval_batch_size = 8,
-    warmup_steps = 200,
+    warmup_steps = 50,
     weight_decay = 1e-3,
     learning_rate = 1e-4,
     gradient_accumulation_steps = 40,
 
     # model saving
     save_strategy = "steps",
-    save_steps = 200,
+    save_steps = 50,
     output_dir = MODEL_DIR,
     overwrite_output_dir = True,
     save_total_limit = 5,
@@ -107,16 +111,16 @@ training_args = TrainingArguments(
     # logging
     report_to = ["tensorboard"],
     logging_strategy = "steps",
-    logging_steps = 200,
+    logging_steps = 50,
     logging_first_step = True,
     logging_dir = LOG_DIR,
 
     # evaluation
     eval_strategy = "steps",
-    eval_steps = 200,
+    eval_steps = 50,
 
     # other
-    dataloader_num_workers = 4,
+    dataloader_num_workers = 1,
     seed = seed,
     data_seed = seed,
     load_best_model_at_end = True,
