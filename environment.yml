@@ -1,4 +1,4 @@
-name: pytorch_env
+name: pytorch_env2
 channels:
   - defaults
   - conda-forge
@@ -10,7 +10,6 @@ dependencies:
   - pandas
   - openpyxl
   - pytorch
-  - pytorch-cuda=12.4
   - transformers
   - datasets
   - evaluate
@@ -18,3 +17,8 @@ dependencies:
   - tqdm
   - tensorboard
   - accelerate
+  - matplotlib
+
+  - pip
+  - pip:
+      - torch --index-url https://download.pytorch.org/whl/cu128
