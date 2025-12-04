@@ -109,7 +109,6 @@ trainer = Trainer(
 )
 predictions = trainer.predict(test_dataset = token_dataset)
 
-print(predictions)
 
 
 # (task 6: output conclusivo)
