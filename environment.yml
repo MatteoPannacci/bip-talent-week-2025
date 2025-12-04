@@ -10,12 +10,11 @@ dependencies:
   - pandas
   - openpyxl
   - pytorch
-  - torchaudio
-  - torchvision
-  - pytorch-cuda=12.2
+  - pytorch-cuda=12.4
   - transformers
   - datasets
   - evaluate
   - scikit-learn
   - tqdm
   - tensorboard
+  - accelerate
