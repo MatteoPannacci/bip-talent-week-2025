@@ -66,7 +66,6 @@ dataframe = pd.DataFrame(excel)
 dataset = Dataset.from_pandas(dataframe)
 dataset = dataset.train_test_split(test_size=0.2, seed=seed)  # (task 1: split)
 
-
 def tokenize_function(examples):
     tokens = tokenizer(
         text = examples['Review'],
@@ -75,7 +74,6 @@ def tokenize_function(examples):
     )
     tokens['label'] = examples['Promotore']
     return tokens
-
 
 token_dataset = dataset.map(
     tokenize_function,
@@ -89,13 +87,13 @@ token_dataset = dataset.map(
 training_args = TrainingArguments(
 
     # hyperparameters
-    num_train_epochs = 1,
-    per_device_train_batch_size = 8,
-    per_device_eval_batch_size = 8,
+    num_train_epochs = 2,
+    per_device_train_batch_size = 16,
+    per_device_eval_batch_size = 16,
     warmup_steps = 50,
     weight_decay = 1e-3,
     learning_rate = 1e-4,
-    gradient_accumulation_steps = 40,
+    gradient_accumulation_steps = 20,
 
     # model saving
     save_strategy = "steps",
