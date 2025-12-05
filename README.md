@@ -1,6 +1,7 @@
 # bip-talent-week-2025
 
-Project developed for the [BIP talent week 2025 Challenge](https://www.vgen.it/it/bip-ai-talent-week-2025-partecipazione/)
+Project developed for the [BIP talent week 2025 Challenge](https://www.vgen.it/it/bip-ai-talent-week-2025-partecipazione/).
+
 
 ## Summary
 
