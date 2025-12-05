@@ -35,7 +35,7 @@ def compute_roc(y_true, y_score, name):
     roc_auc = auc(fpr, tpr)
 
     plt.figure()
-    plt.plot(fpr, tpr, label=f"ROC curve (AUC = {roc_auc:.2f})")
+    plt.plot(fpr, tpr, label=f"ROC curve (AUC = {roc_auc:.4f})")
     plt.plot([0, 1], [0, 1], linestyle="--")
     plt.xlabel("False Positive Rate")
     plt.ylabel("True Positive Rate")
