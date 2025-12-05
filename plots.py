@@ -27,7 +27,6 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 MAIN_DIR = os.path.dirname(os.path.abspath(__file__))
 DATASET_PATH = os.path.join(MAIN_DIR, "data/data_classification.xlsx")
-OUTPUT_PATH = os.path.join(MAIN_DIR, "output_pred_matteo_pannacci.xlsx")
 PICKLE_PATH = os.path.join(MAIN_DIR, "matteo_pannacci_model.pickle")
 
 
@@ -99,8 +98,8 @@ trainer = Trainer(
 train_predictions = trainer.predict(test_dataset = token_dataset['train'])
 test_predictions = trainer.predict(test_dataset = token_dataset['test'])
 
-train_pred_scores = np.sum(train_predictions.predictions, axis=1)
-test_pred_scores = np.sum(test_predictions.predictions, axis=1)
+train_pred_scores = train_predictions.predictions[:, 1] - train_predictions.predictions[:, 0]
+test_pred_scores  = test_predictions.predictions[:, 1] - test_predictions.predictions[:, 0]
 
 train_pred_labels = np.argmax(train_predictions.predictions, axis=1)
 test_pred_labels = np.argmax(test_predictions.predictions, axis=1)
