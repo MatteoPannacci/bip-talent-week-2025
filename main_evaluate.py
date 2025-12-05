@@ -1,5 +1,6 @@
 import os
 import re
+import pickle
 import torch
 import numpy as np
 import pandas as pd
@@ -27,22 +28,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 MAIN_DIR = os.path.dirname(os.path.abspath(__file__))
 DATASET_PATH = os.path.join(MAIN_DIR, "data/data_evaluation.xlsx")
 OUTPUT_PATH = os.path.join(MAIN_DIR, "output_pred_matteo_pannacci.xlsx")
-MODEL_DIR = os.path.join(MAIN_DIR, "model")
-
-
-
-# Find last checkpoint
-
-all_checkpoints = [d for d in os.listdir(MODEL_DIR) if os.path.isdir(os.path.join(MODEL_DIR, d))]
-
-checkpoint_pattern = re.compile(r"checkpoint-(\d+)")
-checkpoints = [(d, int(checkpoint_pattern.match(d).group(1)))
-               for d in all_checkpoints if checkpoint_pattern.match(d)]
-
-last_checkpoint = max(checkpoints, key=lambda x: x[1])[0]
-
-last_checkpoint_path = os.path.join(MODEL_DIR, last_checkpoint)
-print("Last checkpoint:", last_checkpoint_path)
+PICKLE_PATH = os.path.join(MAIN_DIR, "matteo_pannacci_model.pickle")
 
 
 
@@ -59,10 +45,9 @@ seed = 42
 
 set_seed(seed)
 
-model = AutoModelForSequenceClassification.from_pretrained(
-    last_checkpoint_path,
-    trust_remote_code=True
-).to(device)
+with open(PICKLE_PATH, "rb") as f:
+    model = pickle.load(f)
+model.to(device)
 
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)

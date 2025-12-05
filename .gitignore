@@ -2,3 +2,4 @@ logs/
 model/
 output_pred*
 __pycache__/
+*_model.pickle

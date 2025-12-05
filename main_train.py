@@ -1,5 +1,6 @@
 import os
 import torch
+import pickle
 import pandas as pd
 from datasets import load_dataset, Dataset
 
@@ -27,6 +28,7 @@ MAIN_DIR = os.path.dirname(os.path.abspath(__file__))
 DATASET_PATH = os.path.join(MAIN_DIR, "data/data_classification.xlsx")
 LOG_DIR = os.path.join(MAIN_DIR, "log")
 MODEL_DIR = os.path.join(MAIN_DIR, "model")
+PICKLE_PATH = os.path.join(MAIN_DIR, "matteo_pannacci_model.pickle")
 
 
 
@@ -138,3 +140,11 @@ trainer = Trainer(
 # Train (task 2: train)
 
 trainer.train()
+
+
+
+# Dump model
+
+model.to("cpu")
+with open(PICKLE_PATH, "wb") as f:
+    pickle.dump(model, f)
