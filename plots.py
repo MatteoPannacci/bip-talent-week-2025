@@ -60,7 +60,7 @@ excel = pd.read_excel(DATASET_PATH)
 dataframe = pd.DataFrame(excel)
 
 dataset = Dataset.from_pandas(dataframe)
-dataset = dataset.train_test_split(test_size=0.001, seed=seed)
+dataset = dataset.train_test_split(test_size=0.2, seed=seed)
 
 def tokenize_function(examples):
     tokens = tokenizer(
