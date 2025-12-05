@@ -87,33 +87,33 @@ token_dataset = dataset.map(
 training_args = TrainingArguments(
 
     # hyperparameters
-    num_train_epochs = 10,
+    num_train_epochs = 4,
     per_device_train_batch_size = 16,
     per_device_eval_batch_size = 16,
-    warmup_ratio = 0.05,
+    warmup_ratio = 0.1,
     weight_decay = 1e-3,
     learning_rate = 1e-4,
     gradient_accumulation_steps = 20,
 
     # model saving
     save_strategy = "steps",
-    save_steps = 200,
+    save_steps = 100,
     output_dir = MODEL_DIR,
     overwrite_output_dir = True,
-    save_total_limit = 5,
+    save_total_limit = 10,
     metric_for_best_model = 'eval_accuracy',
     greater_is_better = True,
 
     # logging
     report_to = ["tensorboard"],
     logging_strategy = "steps",
-    logging_steps = 200,
+    logging_steps = 100,
     logging_first_step = True,
     logging_dir = LOG_DIR,
 
     # evaluation
     eval_strategy = "steps",
-    eval_steps = 200,
+    eval_steps = 100,
 
     # other
     dataloader_num_workers = 1,
@@ -130,7 +130,7 @@ trainer = Trainer(
     eval_dataset = token_dataset["test"],
     data_collator = data_collator,
     compute_metrics = compute_metrics,
-    callbacks = [EarlyStoppingCallback(5, 0)]
+    callbacks = [EarlyStoppingCallback(10, 0)]
 )
 
 
@@ -138,11 +138,3 @@ trainer = Trainer(
 # Train (task 2: train)
 
 trainer.train()
-
-
-
-# (task 3: ROC)
-
-
-
-# (task 4: confusion matrix)
