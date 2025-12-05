@@ -115,5 +115,5 @@ predictions = trainer.predict(test_dataset = token_dataset)
 # (task 6: output conclusivo)
 
 pred_labels = np.argmax(predictions.predictions, axis=1)
-dataframe.insert(1, "Promotore", pred_labels)
+dataframe.insert(1, "promotore_pred", pred_labels)
 dataframe.to_excel(OUTPUT_PATH, index=False)
