@@ -1,6 +1,6 @@
 # bip-talent-week-2025
 
-Project developed for the [BIP talent week 2025 Challenge](https://www.vgen.it/it/bip-ai-talent-week-2025-partecipazione/) and awarded with the 1st place.
+Project developed for the [BIP AI Talent Week 2025 Challenge](https://www.vgen.it/it/bip-ai-talent-week-2025-partecipazione/) and awarded with the 1st place.
 
 
 ## Summary
